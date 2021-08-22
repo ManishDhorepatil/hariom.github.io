@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+  
+  <head>
+    <meta charset="utf-8" />
+    <title>table2excel | rusty1s</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+
+    <script src="{% static "table2excel.js" %}"></script>
+  </head>
+
+  <body>
+
+
+    <table border='1' id="table">
+        <caption>orders</caption>
+        <thead>
+        <tr>
+          <th>Company Name</th>
+          <th>Cost</th>
+          <th>Cost Per</th>
+          <th>Product Name</th>
+          <th>Product id</th>
+        </thead>
+        <tbody>
+            {% for user in admindata %}
+            <tr>
+                {% for row in user.values %}
+                    <td>{{row}}</td>
+            {% endfor %} 
+            {% endfor %} 
+                
+
+    <button id="export">Export to excel</button>
+
+    <script>
+      var table2excel = new Table2Excel();
+
+      document.getElementById('export').addEventListener('click', function() {
+        table2excel.export(document.querySelectorAll('table'));
+      });
+    </script>
+
+  </body>
+</html>
