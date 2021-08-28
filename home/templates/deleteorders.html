@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{%if msg%}
+    <script>
+        window.alert('{{msg}}');
+    </script>
+{% endif%}
+
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+    </head>
+    <body>
+        <h1>Delete Orders</h1>
+        <form action="/postdeleteorders/" method="post">
+        {% csrf_token %}
+        <h1>Enter the Company Name you want to Delete Orders</h1>
+  
+        
+    </select><br><br>
+  <label for="lname">Enter the Company Name you want to Delete Orders:</label>
+  <input type="text" id="compname" name="compname"><br><br>
+  <input type="submit" value="Delete Orders">
+</form>
+
+        
+        
+        
+    </body>
+</html>

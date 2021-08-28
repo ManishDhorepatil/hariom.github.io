@@ -485,3 +485,20 @@ def producttable (request) :
 
     #print(data[0]['address'])
     return render (request ,"producttable.html",{'admindata':admindata})
+
+
+#deleate orders shree manish
+
+def deleteorders(request)  :
+    return render(request,"deleteorders.html")
+def postdeleteorders(request):
+    compname = request.POST.get("compname")
+    #Company_Name = request.POST.get("compname")
+    db = database.child("Data").child("Product").get()
+    for comp in db.each() :
+        if comp.val()['Company Name']==compname : 
+            database.child("Data").child("Product").child(comp.key()).remove()
+            comp = auth.get_comp_by_compname(compname)
+            auth.delete_comp(comp.uid)
+        return render(request , "deleteorders.html" , {"msg" : "The Company is deleted succesfully!"})
+    return render(request , "deleteorders.html" , {"msg" : "Company not Found!"})
